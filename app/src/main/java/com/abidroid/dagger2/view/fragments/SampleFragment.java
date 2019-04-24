@@ -9,9 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.abidroid.dagger2.R;
+import com.abidroid.dagger2.dagger.ViewModelFactory;
 import com.abidroid.dagger2.viewmodel.SampleViewModel;
 
+import javax.inject.Inject;
+
 public class SampleFragment extends BaseFragment {
+
+    @Inject
+    ViewModelFactory viewModelFactory;
 
     private SampleViewModel mViewModel;
 
@@ -33,7 +39,7 @@ public class SampleFragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
+        mViewModel = ViewModelProviders.of(this, viewModelFactory).get(SampleViewModel.class);
         // TODO: Use the ViewModel
     }
 
